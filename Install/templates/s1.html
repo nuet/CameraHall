@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>安装向导</title>
+<link href="templates/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="top boxcenter"><em></em></div>
+
+<div class="topstep boxcenter">
+    <div class="stepbox">
+        <ul>
+            <li class="this">许可协议</li>
+            <li>检测环境</li>
+            <li>安装参数</li>
+            <li>开始安装</li>
+        </ul>
+    </div>
+</div>
+
+<div class="main boxcenter">
+    <div class="boxtitle">
+        <span>阅读许可协议</span>
+    </div>
+    <div class="pact">
+     有一佳照相馆安装协议
+  </div>
+</div>
+
+<div class="readpact boxcenter">
+    <input name="readpact" type="checkbox" id="readpact" value="" /><label for="readpact"><strong>我已经阅读并同意此协议</strong></label>
+</div>
+<div class="butbox boxcenter">
+    <input type="button" class="inputButton" value=" 下一步 " onclick="document.getElementById('readpact').checked ?window.location.href='index.php?step=2' : alert('您必须同意软件许可协议才能安装使用本系统。');" />
+</div>
+
+</body>
+</html>

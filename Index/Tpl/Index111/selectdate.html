@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>选择门店</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-2.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 头部开始 start -->
+<include file="header"/>
+<!-- 头部结束 end -->
+
+<!-- 步骤start -->
+<!-- <nav class="navbar navbar-default" role="navigation" style="position: relative;
+    min-height: 42px;
+    margin-top: -9px;
+    border: 0px solid transparent;
+    margin-bottom:5px; ">
+<div class="container" style="padding-top: 13px;">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+ <p class="text-error text-left" style="font-size: 10px;">
+   已选择档期</p>
+ </div>
+ </div>
+ </div>
+ </nav> -->
+<!-- 步骤end -->
+<!-- <div class="container" style="padding-bottom:25px;">
+ <div style="float:left;"> <p style="color:#208fd0;font-size: 12px;">2016年8月23日（周二）</p><p style="color:#A59F9F;font-size: 12px;margin: 0 0 0px;">点击全部档期可选择其他日期</p></div>
+
+ <button type="button" class="btn btn-default" style="float:right;font-size: 12px;color: #208FD0;background-color: #fff; border-color: #208FD0;" onclick="javascript:window.location.href='selectdate'"><span class="glyphicon glyphicon-time" style="top: 2px;"></span>全部档期</button>
+</div> -->
+
+
+
+<br><br><br>
+<!-- 步骤start -->
+<nav class="navbar navbar-default" role="navigation" style="position: relative;
+    min-height: 50px;
+    margin-top: -9px;
+    border: 0px solid transparent; ">
+<div class="container" style="padding-top: 13px;">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+ <p class="text-error text-left" style="font-size: 12px;"><a style="display: inline-block;height: 15px;width: 15px;line-height: 15px;text-align: center;border-radius: 50%;background: #615c5c;color: #f0f1f3;" href="#">2</a>
+   选择门店
+</p>
+ </div>
+ </div>
+ </div>
+ </nav>
+<!-- 步骤end -->
+
+
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <!-- 选择门店 start-->
+    <volist name="store" id='store'>
+	   <if condition='$store.id eq 21'>
+       <button type="button" class="btn btn-default btn-block" onclick="javascript:window.location.href='{:U('Index/type',array('cid'=>$store['id']))}'">
+       <div style="float:left;color: #208FD0;">
+       <span class="glyphicon glyphicon-map-marker" style="margin-top:50%;"></span>
+       </div>
+       <div style="margin:0 auto;width:88%;float:left;">
+       <p style="color:#208fd0;margin: 0 0 0px;">{$store.name}</p>
+       <p style="font-size:8px;color: #a59f9f;margin: 0 0 0px;">{$store.area}</p>
+       </div>
+       <div style="float:right;color: #208FD0;">
+       <span class="glyphicon glyphicon-chevron-right" style="margin-top:50%;"></span>
+       </div>
+       </button>
+	  </if>
+    </volist>
+
+
+      <!-- 选择门店 end -->
+	  <p style="padding:2px;margin:200px 0 0 0;color: rgb(156, 156, 156);
+font-size: 10px;">诚邀全国各地加盟商，如您有意向，请直接致电联系我们，我们期待您的加入。
+	 </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>有一佳像馆在线预约</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-2.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 头部开始 start -->
+<!-- 顶部导航start -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+     <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"  style="background-color:#337ab7;border-color: #337ab7;">
+                <span class="sr-only">导航条</span>
+                <span class="icon-bar" style="background-color: #fff;"></span>
+                <span class="icon-bar" style="background-color: #fff;"></span>
+                <span class="icon-bar" style="background-color: #fff;"></span>
+            </button>
+            <div style="margin-top: 12px;margin-left: 40%;margin-bottom: 8px;">
+            <img alt="有一佳像馆" style="width:80px;height: 26px;" src="../Public/img/mobil.png"/>
+            </div>
+
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav" id="nav-list">
+    <li class="active"><a href="{:U('Index/yuyue')}"><span class="glyphicon glyphicon-time"></span>-开始预约</a></li>
+    <li><a href="myorder"><span class="glyphicon glyphicon-list-alt"></span>-我的订单</a></li>
+    <li><a  href="user"><span class="glyphicon glyphicon-user"></span>-个人资料</a></li>
+    <li><a  href="store"><span class="glyphicon glyphicon-map-marker"></span>-门店地址</a></li>
+    <li><a  href="{:U('Index/note')}"><span class="glyphicon glyphicon-camera"></span>-拍摄须知</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- 顶部导航end -->
+<!-- 头部结束 end -->
+<br><br><br>
+<!-- 内容start -->
+<div class="container" >
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h3 class="text-center" style="color:#337ab7">
+                欢迎来到有一佳像馆
+            </h3>
+        <hr style="filter:progid:DXImageTransform.Microsoft.Glow(color=#FF0000,strength=10)" width="90%" color="#FF0000" size="1" />
+        <h5 class="text-left"style="color:#337ab7" >预约项目说明</h5>
+            <ul>
+                <li>
+                   <p style="color:#e71f18;font-size:12px">{$anote.tip1}</p>
+                </li>
+                <li>
+                    <p style="color:#e71f18;font-size:12px">{$anote.tip2}</p>
+                </li>
+                <li>
+                    <p style="color:#e71f18;font-size:12px">{$anote.tip3}</p>
+                </li>
+            </ul>
+
+        <hr style="filter:progid:DXImageTransform.Microsoft.Glow(color=#FF0000,strength=10)" width="90%" color="#FF0000" size="1" />
+        <h5 class="text-left" style="color:#337ab7">预约步骤</h5>
+            <ol style="list-style-type:none;list-style:none;width:100%;overflow:hidden;">
+
+                <li style="width:31%;float:left;margin: 10px auto;font-size:12px;color:red;">
+                    <span style="display: inline-block;height: 16px;width: 16px;line-height: 16px;text-align: center;border-radius: 50%;background: #337ab7;color: #f0f1f3;" href="#">1</span>&nbsp;选择城市
+                </li>
+                <li style="width:31%;float:left;margin: 10px auto;font-size:12px;color:red;">
+                    <span style="display: inline-block;height: 16px;width: 16px;line-height: 16px;text-align: center;border-radius: 50%;background: #337ab7;color: #f0f1f3;" href="#">2</span>&nbsp;选择门店
+                </li>
+                <li style="width:31%;float:left;margin: 10px auto;font-size:12px;color:red;">
+                    <span style="display: inline-block;height: 16px;width: 16px;line-height: 16px;text-align: center;border-radius: 50%;background: #337ab7;color: #f0f1f3;" href="#">3</span>&nbsp;选择类型
+                </li>
+                <li style="width:31%;float:left;margin: 10px auto;font-size:12px;color:red;">
+                    <span style="display: inline-block;height: 16px;width: 16px;line-height: 16px;text-align: center;border-radius: 50%;background: #337ab7;color: #f0f1f3;" href="#">4</span>&nbsp;选择档期
+                </li>
+                <li style="width:31%;float:left;margin: 10px auto;font-size:12px;color:red;">
+                    <span style="display: inline-block;height: 16px;width: 16px;line-height: 16px;text-align: center;border-radius: 50%;background: #337ab7;color: #f0f1f3;" href="#">5</span>&nbsp;支付定金
+                </li>
+            </ol>
+            <hr style="filter:progid:DXImageTransform.Microsoft.Glow(color=#FF0000,strength=10)" width="90%" color="#FF0000" size="1" />
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br>
+<!-- 内容end -->
+
+<!-- 底部导航start -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div style="width: 155px;height: 100px; margin: 20px auto;">
+    <div class="row clearfix" style="
+    margin-left: 0px;">
+        <div class="col-md-12 column">
+             <button type="button" class="btn btn-default btn-primary btn-lg" onclick="javascript:window.location.href='city'" style="padding: 6px 32px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 5px;">开始预约</button> 
+             <br><br>
+             <button type="button" class="btn btn-default btn-lg" onclick="javascript:window.location.href='{:U('Index/myorder')}'" style="padding: 6px 32px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 5px;">我的订单</button>
+        </div>
+    </div>
+</div>
+</nav>
+<!-- 独臂导航end -->
+
+</body>
+</html>

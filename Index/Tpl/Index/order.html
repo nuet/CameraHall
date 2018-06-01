@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>确认订单</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-2.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+</head>
+<body style="background:#EFEDED;">
+<!-- 头部开始 start -->
+<include file="header"/>
+<!-- 头部结束 end -->
+<style type="text/css">
+  a:visited { 
+color: #000000; 
+text-decoration: none; 
+} 
+a:hover { 
+color: #999999; 
+text-decoration: none; 
+}
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: none;
+}
+.alert-success {
+    color: #337ab7;
+}
+</style>
+<br><br><br>
+
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="list-group">
+         <p href="#" class="list-group-item active" style="text-align:center;">确认订单</p>
+        <div class="list-group-item">
+          <strong>拍摄信息</strong>
+          <div><p style="color:#777777;width:30%;float:left;">拍摄日期：</p><p style="color:#e71f18;width:60%;float:left;">{$date}（周{$week}）</p></div>
+          <div><p style="color:#777777;width:30%;float:left;">拍摄时间：</p><p style="color:#e71f18;width:60%;float:left;">{$time}</p></div>
+          <div><p style="color:#777777;width:30%;float:left;">拍摄门店：</p><p style="color:#e71f18;width:60%;float:left;">{$place.name}
+          <a id="modal-171816" href="#modal-container-171816" role="button" data-toggle="modal" style="float:right;color：#B3BBC1;font-size:12px;">
+          <span class="glyphicon glyphicon-map-marker"></span>门店信息
+           </a></p></div>
+         <!--  <div><p>拍摄时间：09：30</p>拍摄门店：深圳福田店</div> -->
+          <br><br><br><br>
+
+              <div class="modal fade" id="modal-container-171816" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin-top:50%;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title" id="myModalLabel">
+                        {$place.name}
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="list-group">
+                          <div class="list-group-item">
+                               <span class="glyphicon glyphicon-map-marker">&nbsp;{$place.area}</span>
+                          </div>
+                         <div class="list-group-item">
+                              <span class="glyphicon glyphicon-phone-alt">&nbsp;<a href="tel:0755-7896587">{$place.tel}</a></span>
+                          </div>
+                          <div class="list-group-item">
+                                <span class="glyphicon glyphicon-envelope">&nbsp;{$place.email}</span>
+                          </div>
+                          <div class="list-group-item">
+                               <span class="glyphicon glyphicon-road">&nbsp;{$place.bus}</span>
+                          </div> 
+                     </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="list-group-item">
+         <div>
+          <p class="list-group-item-text" style="width:30%;float:left;">
+             <strong>预约项目</strong>
+          </P>
+             <p style="color:#e71f18;width:70%;float:left;">{$goods.title} x1份 <br>
+             <em style="color:#777777;font-size:10px;">详情可到门店选择相关套餐</em>
+             </p>
+          </div>
+          <div>
+          <p class="list-group-item-text" style="width:30%;float:left;">
+            <strong>服务时长</strong>
+             <p style="color:#e71f18;width:70%;float:left;">约1.5小时 <br>
+             <em style="color:#777777;font-size:10px;">时长仅供参考，请预留充足的时间</em>
+             </p>
+          </p>
+          </div>
+                  <br><br><br><br>
+        </div>
+        <div class="list-group-item">
+           <div style="color:#777777;width:46%;float:left;" >订单金额 <strong style="color:#e71f18;">￥{$goods.price}</strong></div>
+           <div style="text-align:center;width:8%;float:left;">|</div>
+           <div style="color:#777777;width:100%;" ><p style="float:right;">需付定金 <strong style="color:#337ab7;">￥{$goods['real_price']}</strong></p></div>
+           <br>
+        </div> 
+        <a class="list-group-item active"></a>
+         <div class="alert alert-success alert-dismissable" style="margin-bottom: 20px;">
+         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>
+          温馨提示
+        </h4> <strong>注意!</strong>请核对订单内容，付款后若取消订单，定金将受损失。
+        <a id="modal-24581" href="#modal-container-24581" role="button" data-toggle="modal">查看退款规则</a>
+      <div class="modal fade" id="modal-container-24581" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin-top:50%;">
+          <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="right: 0px;">×</button>
+              <h4 class="modal-title" id="myModalLabel" style="text-align:center;">
+                退款规则
+              </h4>
+            </div>
+                    <div class="modal-body" style="font-size: 12px;">
+
+                      <P>预约成功后订单不可更改，如需取消将产生订金损失，退款规则如下：</P>
+                      <P>1、距拍摄时间72小时以上，退99%订金;</P>
+                      <p>2、距拍摄时间24-72小时，退50%订金; </p>
+                      <p>3、距拍摄时间不足24小时，不可退订金;</p>
+                      <P>如未按预定日期到店，订单则视为放弃，订金将不予退还。</P>
+
+                    </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="text-align:center;color:#777;">下一步，填写预约资料</p>
+<hr style="filter:progid:DXImageTransform.Microsoft.Glow(color=#777,strength=10);border-top: 1px solid #777;" width="100%" color="#777" size="1" />
+<!-- <div class="container">
+ <form class="form-horizontal">
+    <fieldset style="font-size: 12px;">
+    <div class="control-group" style="width:65%;float:left;">
+
+          <label class="control-label" for="input01" style="color:#777777;">*姓名</label>
+          <div class="controls">
+            <input placeholder="请输入您的姓名" class="input-xlarge" type="text">
+          </div>
+        </div>
+
+    <div class="control-group" style="width:35%;float:right;">
+          <label class="control-label" style="color:#777777;">*性别</label>
+          <div class="controls">
+
+      <label class="radio" style="width:50%;float:left;padding-top: 0px;"><input checked="checked" value="女士" name="group" type="radio">女士</label>
+      <label class="radio" style="width:50%;float:left;padding-top: 0px;"><input value="男士" name="group" type="radio">男士</label>
+  </div>
+
+        </div>
+
+    
+
+    
+
+    <div class="control-group">
+
+          <label class="control-label" style="color:#777777;">*手机号码</label>
+          <div class="controls">
+            <input placeholder="请输入您的手机号码" class="input-xlarge search-query" type="text">
+            <p class="help-block"></p>
+          </div>
+
+        </div>
+
+    <div class="control-group">
+
+          <label class="control-label" style="color:#777777;">*电子邮箱</label>
+          <div class="controls">
+            <input placeholder="请输入您的常用电子邮箱" class="input-xlarge search-query" type="text">
+            <p class="help-block"></p>
+          </div>
+
+        </div>
+
+    </fieldset>
+  </form>
+</div> -->
+ <div class="container" id="contain">  
+            <form role="form" class="form-horizontal" action="{:U('Index/checkout')}" method="post">  
+            <input type="hidden" name='gid' value="{$gid}">  
+            <input type="hidden" name='pid' value="{$pid}">  
+            <input type="hidden" name='tpid' value="{$tpid}">  
+              
+                <div class="form-group">  
+                    <label class="col-md-2 control-label" for="name">姓名</label>  
+                    <div class="col-md-10">  
+                        <input class="form-control" name="name" type="text" id="name" placeholder="请输入姓名" value="" />  
+                    </div>  
+                </div>  
+                <div class="form-group">  
+                    <label class="control-label col-md-2">性别</label>  
+                    <div class="col-md-10">  
+                        <label class="radio-inline">  
+                            <input type="radio" name="gender"  value="男" />  
+                            男士 </label>  
+  
+                        <label class="radio-inline">  
+                            <input type="radio" name="gender"  value="女" />  
+                            女士 </label>  
+                    </div>  
+                </div> 
+                <div class="form-group">  
+                    <label class="col-md-2 control-label" for="exampleInputPassword1">手机号码</label>  
+                    <div class="col-md-10">  
+                        <input type="text" name="phone" class="form-control" id="exampleInputPassword1" placeholder="请输入手机号">  
+                    </div>  
+                </div>  
+
+                <div class="form-group">  
+                    <label class="col-md-2 control-label" for="exampleInputPassword2">常用邮箱</label>  
+                    <div class="col-md-10">  
+                        <input type="text" name="email" class="form-control" id="exampleInputPassword2" placeholder="请输入电子邮箱">  
+                    </div>  
+                </div>  
+
+                <!--<div class="form-group">  
+                    <label for="intro" class="control-label col-md-2">备注</label>  
+                    <div class="col-md-10">  
+                        <textarea id="intro" class="form-control" rows="3" name="intro" placeholder="如有问题，请填写备注"></textarea>  
+                    </div>  
+                </div>  -->
+   
+
+<!--                 <div class="form-group">  
+                    <div class="col-md-offset-2 col-md-10">  
+                        <button type="submit" class="btn btn-primary btn-sm">  
+                            Submit  
+                        </button>  
+                        <button type="reset" class="btn btn-primary btn-sm">  
+                            Reset  
+                        </button>  
+                    </div>  
+                </div>   -->
+                <!-- 底部导航start -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="row clearfix">
+        <div class="col-md-12 column" style="width:100%;">
+          <div style="margin:10px 3%;width:94%">
+             <button type="button" class="btn btn-default btn-lg" style="float:left;font-size:12px;" onclick="javascript:window.location.href='type'">重选拍摄类型</button>
+             <button type="submit" class="btn btn-default btn-primary btn-lg" onclick="javascript:document.getElementById('contain').scrollIntoView()"  style="float:right;font-size:12px;">确认并支付</button> 
+          </div>
+        </div>
+</div>
+</nav>
+<!-- 底部导航end -->
+            </form>  
+        </div>  
+<br><br><br><br>
+
+</body>
+</html>
+
+<script src="__PUBLIC__/js/jquery.validate.min.js"></script>
+<script src="__PUBLIC__/js/jquery.validate.js"></script>
+<script src="__PUBLIC__/js/additional-methods.js"></script>
+ <script type="text/javascript" charset="utf-8">  
+
+
+      var MyValidator = function() {  
+        var handleSubmit = function() {  
+            $('.form-horizontal').validate({  
+                errorElement : 'span',  
+                errorClass : 'help-block',  
+                focusInvalid : false,  
+                rules : {  
+                    name : {  
+                        required : true,
+                        rangelength: [2,10]    
+                    },  
+                    phone : {  
+                        required : true,
+                        isMobile :true
+                    } 
+                    // email : {  
+                    //     required : true,
+                    //     email: true
+                    // }  
+                },  
+                messages : {  
+                    name : {  
+                        required : "请输入您的姓名",
+                        rangelength: "用户名必须在2-10个字符之间" 
+                    },  
+                    phone : {  
+                        required : "请输入手机号码" ,
+                        isMobile : "请正确填写您的手机号码"
+
+                    }  
+                    // email : {  
+                    //     required : "请输入邮箱",
+                    //     email:"请输入正确的电子邮箱" 
+                    // }  
+                },  
+      
+                highlight : function(element) {  
+                    $(element).closest('.form-group').addClass('has-error');  
+                },  
+      
+                success : function(label) {  
+                    label.closest('.form-group').removeClass('has-error');  
+                    label.remove();  
+                },  
+      
+                errorPlacement : function(error, element) {  
+                    element.parent('div').append(error);  
+                },  
+      
+                submitHandler : function(form) {  
+                    form.submit();  
+                }  
+            });  
+      
+            $('.form-horizontal input').keypress(function(e) {  
+                if (e.which == 13) {  
+                    if ($('.form-horizontal').validate().form()) {  
+                        $('.form-horizontal').submit();  
+                    }  
+                    return false;  
+                }  
+            });  
+        }  
+        return {  
+            init : function() {  
+                handleSubmit();  
+            }  
+        };  
+      
+    }();  
+</script>
+        <script type="text/javascript" charset="utf-8">  
+            MyValidator.init();  
+        </script>  

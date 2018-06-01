@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>订单详情</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-2.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+</head>
+<body style="background:#EFEDED;">
+<!-- 头部开始 start -->
+<include file="header"/>
+<!-- 头部结束 end -->
+<style type="text/css">
+    a:link { 
+   text-decoration: none; 
+   } 
+   a:visited { 
+   text-decoration: none; 
+   } 
+   a:hover { 
+   text-decoration: none; 
+ }
+</style>
+<br><br><br>
+
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="list-group">
+         <p href="#" class="list-group-item active" style="text-align:center;">订单详情</p>
+
+        <div class="list-group-item">
+            <div style="width:75%;float:left; ">
+             <p style="color:#777777;width:40%;float:left;">订单编号：</p>
+             <p style="color:#e71f18;width:50%;float:left;">{$myorder.order_id}</p>
+             </div>
+          <div style="width:20%;float:right; ">
+            <if condition="$myorder.status eq -1">
+             <p class="text-center" style="color: #fff;font-size:10px;border: 1px solid #208FD0;background:#208FD0; border-radius: 5px;">已关闭</p>
+            <elseif condition="$myorder.status eq 0" />
+             <p class="text-center" style="color: #fff;font-size:10px;border: 1px solid #208FD0;background:#208FD0; border-radius: 5px;">待付款</p>
+            <elseif condition="$myorder.status eq 1" />
+            <p class="text-center" style="color: #fff;font-size:10px;border: 1px solid #208FD0;background:#208FD0; border-radius: 5px;">已付款</p>
+		    <elseif condition="$myorder.status eq 2" />
+            <p class="text-center" style="color: #fff;font-size:10px;border: 1px solid #208FD0;background:#208FD0; border-radius: 5px;">已付款</p>
+            </if>
+
+
+          </div>
+
+           <div style="width:100%;float:left;"><p style="color:#777777;width:30%;float:left;">创建时间：</p><p style="color:#e71f18;width:60%;float:left;">{$myorder.createtime}</p></div>
+          <br><br><br>
+        </div>
+
+        <div class="list-group-item">
+          <strong>拍摄信息</strong>
+          <div><p style="color:#777777;width:28%;float:left;">拍摄日期：</p><p style="color:#e71f18;width:70%;float:left;">{$myorder.yuyue_date}</p></div>
+          <div><p style="color:#777777;width:28%;float:left;">拍摄时间：</p><p style="color:#e71f18;width:60%;float:left;">{$myorder.time_point}</p></div>
+          <div><p style="color:#777777;width:28%;float:left;">拍摄门店：</p><p style="color:#e71f18;width:60%;float:left;">{$myorder.store_name}
+          <a id="modal-171816" href="#modal-container-171816" role="button" data-toggle="modal" style="float:right;color：#B3BBC1;font-size:12px;">
+          <span class="glyphicon glyphicon-map-marker"></span>门店信息
+           </a></p></div>
+         <!--  <div><p>拍摄时间：09：30</p>拍摄门店：深圳福田店</div> -->
+          <br><br><br><br>
+
+              <div class="modal fade" id="modal-container-171816" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin-top:50%;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title" id="myModalLabel">
+                        {$myorder.store_name}
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                     <p>{$myorder.store_area}</p>
+                     <P><a href="tel:$myorder.store_tel">{$myorder.store_tel}</a></P>
+                     <P>{$myorder.store_email}</P>
+                     <p>{$myorder.store_bus}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="list-group-item">
+         <div>
+          <p class="list-group-item-text" style="width:28%;float:left;">
+             <strong>预约项目</strong>
+          </P>
+             <p style="color:#e71f18;width:70%;float:left;">{$myorder.title} x1份 <br>
+             <em style="color:#777777;font-size:10px;">详情可到门店选择相关套餐</em>
+             </p>
+          </div>
+          <div>
+          <p class="list-group-item-text" style="width:28%;float:left;">
+            <strong>服务时长</strong>
+             <p style="color:#e71f18;width:70%;float:left;">约2小时 <br>
+             <em style="color:#777777;font-size:10px;">时长仅供参考，请预留充足的时间</em>
+             </p>
+          </p>
+          </div>
+                  <br><br><br><br>
+        </div>
+        <div class="list-group-item">
+           <div style="color:#777777;width:46%;float:left;" >订单总价 <strong style="color:#e71f18;">￥{$myorder.price}</strong></div>
+           <div style="text-align:center;width:8%;float:left;">|</div>
+           <div style="color:#777777;width:100%;" ><p style="float:right;">
+            <if condition="$myorder.status eq -1">
+           未付定金
+		   <strong style="color:#337ab7;">￥{$myorder.pay_price}</strong></p></div>
+           <elseif condition="$myorder.status eq 0"/>
+           需付定金
+		   <strong style="color:#337ab7;">￥{$myorder.pay_price}</strong></p></div>
+           <elseif condition="$myorder.status eq 1 and $myorder.state eq 0"/>
+           已付定金
+		   <strong style="color:#337ab7;">￥{$myorder.pay_price}</strong></p></div>
+           <elseif condition="$myorder.status eq 1 and $myorder.state eq 1"/>
+           已付定金
+		   <strong style="color:#337ab7;">￥{$myorder.pay_price}</strong></p></div>
+           <elseif condition="$myorder.status eq -2"/>
+           已退定金
+		   <strong style="color:#337ab7;">{$myorder.return_fee}</strong></p></div>
+		   <elseif condition="$myorder.status eq 2"/>
+           已付定金
+		   <strong style="color:#337ab7;">￥{$myorder.pay_price}</strong></p></div>
+           </if>
+           <br>
+        </div> 
+
+
+         <div class="list-group-item">
+            <if condition="$myorder.status eq -1">
+                <p class="text-center">该订单已关闭</p>
+			<elseif condition="$myorder.status eq 2 and $myorder.state eq 0"/>
+                <p class="text-center">距预约时间不足24h，请及时前往门店核实。</p>
+            <elseif condition="$myorder.status eq 0"/>
+                <a href="__URL__/orderpay/orderid/{$myorder.order_id}">
+                <button type="submit" class="btn btn-default btn-block btn-primary" style="float:right;font-size:12px;" onclick="">确认支付</button></a> 
+                <br><br>
+            <elseif condition="$myorder.status eq 1 and $myorder.state eq 0"/>
+                <a id="modal-1718190" href="#modal-container-1718190" role="button" data-toggle="modal">
+                <button type="button" class="btn btn-default btn-block btn-primary" id="closeorder" style="font-size:12px; padding: 6px 12px;">取消订单</button></a>
+                <p class="text-center" id="refund_order_up"></p>
+            <elseif condition="$myorder.status eq 1 and $myorder.state eq 1"/>
+                <p class="text-center">该订单你已完成，线下已核实完毕。</p>
+             <elseif condition="$myorder.status eq -2"/>
+                <p class="text-center">该订单你已取消，已退款成功。</p>
+            </if>
+
+          </div> 
+
+
+              <div class="modal fade" id="modal-container-1718190" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin-top:25%;">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                       <h4 class="modal-title" id="myModalLabel">确认取消订单吗？</h4>
+                    </div>
+                    <div class="modal-body" style="font-size: 12px;">
+
+                      <P>预约成功后订单不可更改，如需取消将产生订金损失，退款规则如下：</P>
+                      <P>1、距拍摄时间72小时以上，退99%订金;</P>
+                      <p>2、距拍摄时间24-72小时，退50%订金; </p>
+                      <p>3、距拍摄时间不足24小时，不可退订金;</p>
+                      <P>如未按预定日期到店，订单则视为放弃，订金将不予退还。</P>
+
+                    </div>
+                    <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">不取消了</button>
+                <a class="refund_order" id="{$myorder.order_id}"><button type="button" class="btn btn-default" data-dismiss="modal">取消订单</button></a>
+                <!-- <a href="__URL__/refund/id/{$myorder.order_id}">取消订单</a> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<br><br><br><br>
+
+</body>
+</html>
+<script type="text/javascript">
+
+$(function(){
+        var id;
+        $(".refund_order").click(function() {
+            id = $(this).attr('id');
+            var data ='id='+id;
+            $.ajax({
+                'url':"__URL__/refund/",
+                'data':data,
+                'type':'post',
+                'dataType':'json',
+                'success':function(jobj){
+                    // console.log(jobj);
+                    if(jobj['status']=='-1'){
+                       document.getElementById('refund_order_up').innerHTML = "距预约时间低于24小时，不予退款";
+                       document.getElementById('refund_order_up').style.color = 'red';
+
+                    }else if(jobj['status']=='-2'){
+                        document.getElementById('refund_order_up').innerHTML = "按50%退款成功，请留意微信退款通知。";
+                        document.getElementById('refund_order_up').style.color = '#6bb95d';
+                        document.getElementById('closeorder').innerHTML = "退款完成";
+                        document.getElementById('closeorder').addClass = 'btn-primary1';
+                        window.location.reload();
+
+                    }else if(jobj['status']=='-3'){
+                       document.getElementById('refund_order_up').innerHTML = "按99%退款成功，请留意微信退款通知。";
+                       document.getElementById('refund_order_up').style.color = '#6bb95d';
+                       document.getElementById('closeorder').innerHTML = "退款完成";
+                       document.getElementById('closeorder').addClass = 'btn-primary1';
+                       window.location.reload();
+                    }else if(jobj['status']=='-9'){
+                       document.getElementById('refund_order_up').innerHTML = "该订单您已退款成功，请勿重复申请退款。";
+                       document.getElementById('refund_order_up').style.color = 'red';
+                       document.getElementById('closeorder').innerHTML = "退款已完成";
+                       document.getElementById('closeorder').addClass = 'btn-primary1';
+                       window.location.reload();
+
+                    }else{
+					
+                        document.getElementById('refund_order_up').innerHTML = "退款请求超时，请联系商家进行退款。";
+                        document.getElementById('refund_order_up').style.color = 'red';
+                    }
+                }
+            });
+        });
+
+
+    });
+
+</script>
+<style type="text/css">
+  .btn-primary1 {
+    color: #fff;
+    background-color: #ccc;
+    border-color: #ccc;
+}
+</style>

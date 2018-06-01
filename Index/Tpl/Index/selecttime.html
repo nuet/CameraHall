@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>选择拍摄时间</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-2.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- 头部开始 start -->
+<include file="header"/>
+<!-- 头部结束 end -->
+<style type="text/css">
+  a:visited { 
+color: #000000; 
+text-decoration: none; 
+} 
+a:hover { 
+color: #999999; 
+text-decoration: none; 
+}
+a:focus, a:hover {
+    color: #23527c;
+    text-decoration: none;
+}
+</style>
+<br><br><br>
+<!-- 步骤start -->
+<nav class="navbar navbar-default" role="navigation" style="position: relative;
+    min-height: 42px;
+    margin-top: -9px;
+    border: 0px solid transparent;
+    margin-bottom:5px; ">
+<div class="container" style="padding-top: 13px;">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+    <div style="width：50%; float:left;">
+    <p class="text-error text-left" style="font-size: 12px;color: #208FD0;">{$place.name}</p>
+    </div>
+   <div style="float:right;">
+           <a id="modal-171816" href="#modal-container-171816" role="button" data-toggle="modal" style="float:right;">
+                  <p style="color:#A59F9F;font-size: 12px;margin: 0 0 0px;"><span class="glyphicon glyphicon-map-marker"></span>门店信息</p>
+           </a>
+              <div class="modal fade" id="modal-container-171816" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="margin-top:50%">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h4 class="modal-title" id="myModalLabel">
+                        {$place.name}
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="list-group">
+                          <div class="list-group-item">
+                               <span class="glyphicon glyphicon-map-marker">&nbsp;{$place.area}</span>
+                          </div>
+                         <div class="list-group-item">
+                              <span class="glyphicon glyphicon-phone-alt">&nbsp;<a href="tel:0755-7896587">{$place.tel}</a></span>
+                          </div>
+                          <div class="list-group-item">
+                                <span class="glyphicon glyphicon-envelope">&nbsp;{$place.email}</span>
+                          </div>
+                          <div class="list-group-item">
+                               <span class="glyphicon glyphicon-road">&nbsp;{$place.bus}</span>
+                          </div> 
+                     </div>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+ </div>
+ </div>
+ </div>
+ </nav>
+<!-- 步骤end -->
+<div class="container">
+ <div style="float:left;"> 
+<p style="color:#A59F9F;font-size: 12px;margin: 0 0 0px;">已选择档期</p>
+ <p style="color:#208fd0;font-size: 12px;">{$date}（周{$week}）</p></div>
+
+ <a href="{:U('Index/selectdate',array('gid'=>$goods_id,'pid'=>$place_id))}"><button type="button" class="btn btn-default" style="float:right;font-size: 12px;color: #208FD0;background-color: #fff; border-color: #208FD0;" ><span class="glyphicon glyphicon-time" style="top: 2px;"></span>重选档期</button></a>
+</div>
+
+
+
+
+<!-- 步骤start -->
+<nav class="navbar navbar-default" role="navigation" style="position: relative;
+    min-height: 50px;
+    margin-top: -9px;
+    border: 0px solid transparent; ">
+<div class="container" style="padding-top: 13px;">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+<div style="float:left;">
+ <p class="text-error text-left" style="font-size: 12px;margin-top:5px;">
+ <a style="display: inline-block;height: 15px;width: 15px;line-height: 15px;text-align: center;border-radius: 50%;background: #615c5c;color: #f0f1f3;" href="#">4</a>
+   选择时间
+   </p>
+   </div>
+   <div style="float:right;">
+    <a style="color:#208fd0;font-size: 12px;"><span class="glyphicon glyphicon-asterisk"></span>-可预约</a>
+    <a style="color:#CBD2D2;font-size: 12px;"><span class="glyphicon glyphicon-asterisk"></span>-已约满</a>
+    </div>
+ </div>
+ </div>
+ </div>
+ </nav>
+<!-- 步骤end -->
+
+
+
+      <!-- 选择时间 start-->
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <table class="table table-bordered">
+        <tbody>
+         <volist name="list" id='tp' key='key'>
+         <if condition="$key-1%4 eq 0">
+         <tr>
+	         <if condition="$tp['time_store'] gt 0 "> 
+	        	<td  style="color:#208fd0;font-size: 12px;text-align:center;"><a id="modal-136554" class="tanc" val="{$tp.time_point}" tpid="{$tp.tpid}" role="button" data-toggle="modal"><span class="glyphicon glyphicon-asterisk"></span><strong style="color:#e71f18;">{$tp.time_point}</strong></a></td>
+	         <else/>
+	           <td  style="color:#CBD2D2;font-size: 12px;text-align:center;"><span class="glyphicon glyphicon-asterisk"></span>{$tp.time_point}</td>
+	         
+	         </if>
+         <elseif condition="($key)%4 eq 0 " />
+         	 <if condition="$tp['time_store'] gt 0 "> 
+	        	<td  style="color:#208fd0;font-size: 12px;text-align:center;"><a id="modal-136554" class="tanc" val="{$tp.time_point}" tpid="{$tp.tpid}" role="button" data-toggle="modal"><span class="glyphicon glyphicon-asterisk"></span><strong style="color:#e71f18;">{$tp.time_point}</strong></a></td>
+	         <else/>
+	           <td  style="color:#CBD2D2;font-size: 12px;text-align:center;"><span class="glyphicon glyphicon-asterisk"></span>{$tp.time_point}</td>
+	         
+	         </if>
+         	
+         	</tr>
+         <else/>
+         	<if condition="$tp['time_store'] gt 0 "> 
+	        	<td  style="color:#208fd0;font-size: 12px;text-align:center;"><a id="modal-136554" class="tanc" val="{$tp.time_point}" tpid="{$tp.tpid}" role="button" data-toggle="modal"><span class="glyphicon glyphicon-asterisk"></span><strong style="color:#e71f18;">{$tp.time_point}</strong></a></td>
+	         <else/>
+	           <td  style="color:#CBD2D2;font-size: 12px;text-align:center;"><span class="glyphicon glyphicon-asterisk"></span>{$tp.time_point}</td>
+	         
+	        </if>
+         </if> 
+         </volist>
+         <if condition="$key%4 neq 0">
+         	</tr>
+         </if>	
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+      <!-- 选择时间 end -->
+
+
+      <!--确认预约时间 start -->
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="modal fade" id="modal-container-136554" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin-top: 50%;">
+          <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+              <p style="text-align:center;">你选择的档期是</p>
+              <P style="text-align:center;color:#208fd0;">{$date}（周{$week}）<span id="real_time">09：30</span></P>
+              <p style="text-align:center;color:#208fd0;">{$place.name}</p>
+              <p style="text-align:center;">是否确认？</p>
+            </div>
+            <div class="modal-footer">
+              <div style="width:80%;margin:0 auto;">
+               <button type="button" class="btn btn-default" data-dismiss="modal" style="float:left;">取消</button>
+               <button type="button" class="btn btn-primary" style="float:right;" onclick="goorder();">确认</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 确认预约时间 end -->
+<script>
+var tpid;
+$('.tanc').click(function(){
+		
+	tpid = $(this).attr('tpid');
+	var tp =$(this).attr('val');
+	$("#real_time").text(tp);
+	
+	$('#modal-container-136554').modal();
+	
+});
+function goorder(){
+	var str = "{:U('Index/order',array('gid'=>$goods_id,'pid'=>$place_id,'tpid'=>"+tpid+"))}";
+	var str = "__URL__/order/gid/"+{$goods_id}+"/pid/"+{$place_id}+"/tpid/"+tpid;
+    //console.log(str);
+	window.location =str;
+}
+
+</script>
+</body>
+</html>
