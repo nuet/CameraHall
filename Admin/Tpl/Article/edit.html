@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>有一佳管理后台 - 编辑产品</title>
+<link href="../Public/images/skin.css" rel="stylesheet" type="text/css" />
+<link href="../Public/css/17joys.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+table.admintable td.key{
+	background-color:#F6F6F6;
+	border-bottom:1px solid #E9E9E9;
+	border-right:1px solid #E9E9E9;
+	color:#666666;
+	font-weight:bold;
+	text-align:right;
+	width:140px;
+}
+.button {
+	border:1px solid #B6B3AF;
+	padding:1px 4px 0;
+	height:21px;
+}
+
+input, select {
+	border:1px solid silver;
+	font-size:13px;
+}
+input.inputbox{
+	width:180px;
+}
+span.red_font {
+	color:red;
+}
+-->
+</style>
+<!-- <script type="text/javascript" src="__PUBLIC__/fckeditor/fckeditor.js"></script> -->
+ <script type="text/javascript">
+// function onloadfun(){
+// 	var fck=new FCKeditor('introtext');
+// 	fck.BasePath="__PUBLIC__/fckeditor/";
+// 	fck.Width="700";
+// 	fck.Height="300";
+// 	fck.ReplaceTextarea();
+// }
+// window.onload=onloadfun;
+
+// function fnOnSubmit(form){
+// 	var oeditor=FCKeditorAPI.GetInstance('introtext');
+// 	oeditor.UpdateLinkedField();
+// }
+</script>
+<link href="../Public/kindeditor/themes/default/default.css" rel="stylesheet" />
+<script charset="utf-8" src="../Public/js/jquery-1.3.2.min.js"></script>
+<script charset="utf-8" src="../Public/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../Public/kindeditor/lang/en.js"></script>
+<script>
+    KindEditor.ready(function(K) {
+        window.editor = K.create('#editor_id', {
+            langType : 'en'
+        });
+    });
+</script>
+</head>
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="17" valign="top" background="../Public/images/mail_leftbg.gif"><img src="../Public/images/left-top-right.gif" width="17" height="29" /></td>
+    <td valign="top" background="../Public/images/content-bg.gif"><table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
+      <tr>
+        <td height="31"><div class="titlebt">编辑产品</div></td>
+      </tr>
+    </table></td>
+    <td width="16" valign="top" background="../Public/images/mail_rightbg.gif"><img src="../Public/images/nav-right-bg.gif" width="16" height="29" /></td>
+  </tr>
+  <tr>
+    <td valign="middle" background="../Public/images/mail_leftbg.gif">&nbsp;</td>
+    <td valign="top" bgcolor="#F7F8F9">
+    <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan="2" valign="top">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+      <td>
+      <div class="tip-msg ">
+                提示: 带<span class="red_font">*</span>的项目为必填信息. 		
+      </div>
+      <script>
+      	var cat = new Array;
+      	cat[0]=new Array('-1','-1','选择文章类别');
+      	<volist name="clist" id="category" key="k">
+      	cat[{$k}]=new Array('{$category["sectionid"]}','{$category["id"]}','{$category["title"]}');
+        </volist>
+		function changeCatList(){
+			var secobj=document.adminForm.sectionid;
+			var catobj=document.adminForm.catid;
+			catobj.innerHTML="";
+			var sid=secobj.options[secobj.selectedIndex].value;
+			var j=0;
+			for(var i=0;i<cat.length;i++){				
+				if(cat[i][0]==sid){
+					var opt=new Option();
+					opt.value=cat[i][1];
+					opt.text=cat[i][2];
+					catobj.options[j++]=opt;
+				}
+			}			
+			if(catobj.options.length<1){
+				var opt=new Option();
+				opt.value=cat[0][1];
+				opt.text=cat[0][2];
+				catobj.options[0]=opt;
+			}
+		}
+		</script>
+		<form name="adminForm" action="__URL__/update" method="post" enctype="multipart/form-data">
+      	<table class="admintable" id="admintable">
+		<tr><td class="key">标题：<span class="red_font">*</span></td>
+		<td><input type="text" name="title" value="{$udate['title']}" /></td></tr>
+		<tr><td class="key">总价：<span class="red_font">*</span></td>
+		<td><input type="text" name="price" value="{$udate['price']}" /></td></tr>
+		
+		<tr><td class="key">定金：<span class="red_font">*</span></td>
+		<td><input type="text" name="pay_price" value="{$udate['pay_price']}" /></td></tr>
+		
+		<tr><td class="key">图片：</td>
+		<td><input type="file" name="photo" value="{$udate['photo']}" /></td></tr>
+		<if condition="!empty($udate['photo'])">
+			<tr><td class="key"></td>
+			<td><input type="hidden" name="photo" value="{$udate['photo']}" />
+			<img src="__PUBLIC__/Uploads/{$udate['photo']}" width="200px" height="200px">
+			</td></tr>
+		</if>
+		
+		<tr><td class="key">别名：</td>
+		<td><input type="text" name="alias" value="{$udate['alias']}" /></td></tr>
+		<tr><td class="key">是否发布：</td>
+		<td>
+		是<input type="radio" name="published" value="1" <eq name="udate['published']" value="1">checked="checked"</eq> />
+		否<input type="radio" name="published" value="0" <eq name="udate['published']" value="0">checked="checked"</eq> />
+		</td>
+		</tr>
+		<tr>
+		<td class="key">所属单元：</td>
+		<td>
+		<select name="sectionid" onchange="changeCatList();">
+		<option value="-1">请选择产品单元</option>
+		<volist name="slist" id="section">
+			<option value="{$section['id']}" <eq name="udate['sectionid']" value="$section['id']">selected="selected"</eq>>{$section['title']}</option>
+		</volist>
+		</select>
+		</td>
+		</tr>
+		<tr>
+		<tr>
+		<td class="key">所属门店：</td>
+		<td>
+		<select name="store_id">
+			<option value="0">请选择门店</option>
+		<volist name="scity" id="city">
+			<option value="{$city['id']}" <eq name="udate['store_id']" value="$city['id']">selected="selected"</eq>>{$city['name']}</option>
+		</volist>
+		</select>
+		</td>
+		</tr>
+
+		<tr>
+		</tr>
+		<tr>
+		<td class="key">访问级别：</td>
+		<td>
+		<select name="access">
+			<option value="0" <eq name="udate['access']" value="0">selected="selected"</eq>>公开</option>
+			<volist name="rlist" id="role">
+			<option value="{$role['id']}" <eq name="udate['access']" value="$role['id']">selected="selected"</eq>>{$role['name']}</option>
+			</volist>
+		</select>
+		</td>
+		</tr>
+
+
+
+<tr><td></td></tr>
+		<tr><td class="key">包含项目图标1：</td>
+		<td><input type="file" name="imga" value="{$udate['img1']}" /></td></tr>
+		<if condition="!empty($udate['img1'])">
+			<tr><td class="key"></td>
+			<td><input type="hidden" name="imga" value="{$udate['img1']}" />
+			<img src="__PUBLIC__/Uploads/{$udate['img1']}" width="200px" height="200px">
+			</td></tr>
+		</if>
+		<tr><td class="key">图标名称1：<span class="red_font">*</span></td>
+		<td><input type="text" name="img1_name" value="{$udate['img1_name']}" /></td></tr>
+		<tr><td class="key">详细描述1：<span class="red_font">*</span></td>
+		<td><input type="text" name="img1_title" value="{$udate['img1_title']}" /></td></tr>
+<tr><td></td></tr>
+		<tr><td class="key">包含项目图标2：</td>
+		<td><input type="file" name="imgb" value="{$udate['img2']}" /></td></tr>
+		<if condition="!empty($udate['img2'])">
+			<tr><td class="key"></td>
+			<td><input type="hidden" name="imgb" value="{$udate['img2']}" />
+			<img src="__PUBLIC__/Uploads/{$udate['img2']}" width="200px" height="200px">
+			</td></tr>
+		</if>
+		<tr><td class="key">图标名称2：<span class="red_font">*</span></td>
+		<td><input type="text" name="img2_name" value="{$udate['img2_name']}" /></td></tr>
+		
+		<tr><td class="key">详细描述2：<span class="red_font">*</span></td>
+		<td><input type="text" name="img2_title" value="{$udate['img2_title']}" /></td></tr>
+<tr><td></td></tr>
+		<tr><td class="key">包含项目图标3：</td>
+		<td><input type="file" name="imgc" value="{$udate['img3']}" /></td></tr>
+		<if condition="!empty($udate['img3'])">
+			<tr><td class="key"></td>
+			<td><input type="hidden" name="imgc" value="{$udate['img3']}" />
+			<img src="__PUBLIC__/Uploads/{$udate['img3']}" width="200px" height="200px">
+			</td></tr>
+		</if>
+		<tr><td class="key">图标名称3：<span class="red_font">*</span></td>
+		<td><input type="text" name="img3_name" value="{$udate['img3_name']}" /></td></tr>
+		<tr><td class="key">详细描述3：<span class="red_font">*</span></td>
+		<td><input type="text" name="img3_title" value="{$udate['img3_title']}" /></td></tr>
+<tr><td></td></tr>
+		<tr><td class="key">包含项目图标4：</td>
+		<td><input type="file" name="imgd" value="{$udate['img4']}" /></td></tr>
+		<if condition="!empty($udate['img1'])">
+			<tr><td class="key"></td>
+			<td><input type="hidden" name="imgd" value="{$udate['img4']}" />
+			<img src="__PUBLIC__/Uploads/{$udate['img4']}" width="200px" height="200px">
+			</td></tr>
+		</if>
+		<tr><td class="key">图标名称4：<span class="red_font">*</span></td>
+		<td><input type="text" name="img4_name" value="{$udate['img4_name']}" /></td></tr>
+		<tr><td class="key">详细描述4：<span class="red_font">*</span></td>
+		<td><input type="text" name="img4_title" value="{$udate['img4_title']}" /></td></tr>
+<tr><td></td></tr>
+
+
+
+
+
+
+
+
+
+
+		<tr><td class="key">服务时长：<span class="red_font">*</span></td>
+		<td><input type="text" name="length_of_service" value="{$udate['length_of_service']}" /></td></tr>
+
+        <tr><td class="key">看样时间：<span class="red_font">*</span></td>
+		<td><input type="text" name="look_like_time" value="{$udate['look_like_time']}" /></td></tr>
+
+        <tr><td class="key">取件方式：<span class="red_font">*</span></td>
+		<td><input type="text" name="access_method" value="{$udate['access_method']}" /></td></tr>
+
+
+		<tr>
+		<td class="key">产品介绍：</td>
+		<td><textarea name="title_alias" rows="5" cols="40">{$udate['title_alias']}</textarea></td>
+		</tr>
+		<tr>
+		<td colspan="2">
+		<textarea name="introtext" id="editor_id">{$udate['introtext']|htmlspecialchars}</textarea>
+		</td>
+		</tr>
+<!-- 		<tr>
+		<td>
+		<input type="hidden" name="id" value="{$udate['id']}" />
+		<input type="submit" value="保存" />
+		<input type="submit" value="应用" />
+		<input class="button" type="button" onclick="history.go(-1);" value="取消" />
+		</td>
+		</tr> -->
+		</table>
+	    <div style="margin:0 45%;">
+		<div style="float:left;width:70%;">
+			<input type="hidden" name="id" value="{$udate['id']}" />
+		    <input type="submit" value="保存" />
+		    <input class="" type="button" onclick="history.go(-1);" value="取消" />
+		</div>
+		</div>
+      </form>
+	  </td>
+      </tr>
+    </table>
+    </td>
+    <td background="../Public/images/mail_rightbg.gif">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="bottom" background="../Public/images/mail_leftbg.gif"><img src="../Public/images/buttom_left2.gif" width="17" height="17" /></td>
+    <td background="../Public/images/buttom_bgs.gif"><img src="../Public/images/buttom_bgs.gif" width="17" height="17"></td>
+    <td valign="bottom" background="../Public/images/mail_rightbg.gif"><img src="../Public/images/buttom_right2.gif" width="16" height="17" /></td>
+  </tr>
+</table>
+</body>
+</html>
